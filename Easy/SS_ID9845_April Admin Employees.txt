@@ -1,0 +1,21 @@
+April Admin Employees: ID9845
+
+Question - Find the number of employees working in the Admin department that joined in April or later, in any year.
+
+Table - worker
+department: text
+first_name: text
+joining_date: date
+last_name: text
+salary: bigint
+worker_id: bigint
+
+
+##########################################################################
+Solution - 
+
+select 
+count(worker_id)
+from worker
+where department = 'Admin' and extract(month from joining_date) >= 4
+;

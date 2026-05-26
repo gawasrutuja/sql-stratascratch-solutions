@@ -1,0 +1,18 @@
+Calculate Samantha's and Lisa's total sales revenue : ID 10127
+
+
+Question - What is the total sales revenue of Samantha and Lisa?
+
+Table- sales_performance
+id: bigint
+sales_revenue: bigint
+salesperson: text
+widget_sales: bigint
+
+#############################################################################
+SOLUTION ->
+select 
+sum(sales_revenue) as total_revenue
+from sales_performance
+where id in (3,7)
+;
