@@ -1,0 +1,18 @@
+Find drafts which contains the word 'optimism' : ID 9805
+
+
+Question -> Find drafts which contains the word 'optimism'.
+
+
+Table-> google_file_store
+contents: text
+filename: text
+
+
+##############################################################
+SOLUTION->
+
+select *
+from google_file_store
+where contents like '%optimism%' and filename like 'draft%'
+;
