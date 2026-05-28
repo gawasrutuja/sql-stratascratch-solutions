@@ -1,0 +1,27 @@
+Finding User Purchases : ID 10322
+
+Question -> Identify returning active users by finding users who made a second purchase within 1 to 7 days after their first purchase. Ignore same-day purchases. Output a list of these user_ids.
+
+
+Table-> amazon_transactions
+created_at:date
+id:bigint
+item:text
+revenue:bigint
+user_id:bigint
+
+
+############################################################
+SOLUTION ->
+with active_user as (
+select
+user_id,
+created_at,
+row_number() over(partition by user_id order by created_at) as rnk,
+datediff(created_at, lag(created_at) over(partition by user_id order by created_at)) as days_diff
+from amazon_transactions
+)
+select distinct user_id from active_user
+where rnk = 2 and days_diff between 1 and 7
+order by user_id asc
+;
